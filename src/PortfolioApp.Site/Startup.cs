@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using PortfolioApp.Site.Models;
 
 namespace PortfolioApp.Site
 {
@@ -19,6 +22,11 @@ namespace PortfolioApp.Site
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
+			services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+			{
+				options.User.RequireUniqueEmail = true;
+			}).AddEntityFrameworkStores<ApplicationDataContext>().AddDefaultTokenProviders();
+			services.AddDbContext<ApplicationDataContext>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
