@@ -29,7 +29,7 @@ namespace PortfolioApp.Site.Models
 		}
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlite("Filename=testDataBase");
+			optionsBuilder.UseSqlite("Filename=testDataBase.db");
 			base.OnConfiguring(optionsBuilder);
 		}
 	}
