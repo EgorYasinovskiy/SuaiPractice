@@ -17,5 +17,7 @@ namespace PortfolioApp.Site.Models.ViewModels
 		
 		[Display(Name = "Запомнить данные")]
 		public bool RememberMe { get; set; }
+
+		public string ReturnURL { get; set; }
 	}
 }

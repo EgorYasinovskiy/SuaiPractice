@@ -1,0 +1,35 @@
+﻿@model PortfolioApp.Site.Models.ViewModels.SignInViewModel
+
+<div class="container">
+    <div class="row justify-content-center text-center my-5">
+        <div class="col">
+            <h1>
+                Регистрация нового пользователя
+            </h1>
+        </div>
+    </div>
+    <div class="row justify-content-center my-5">
+        <div class="col">
+        <form asp-action="SignIn" method="post">
+            <div class="col-md-8 col-sm-12 col-lg-4 form-group text-center mx-auto">
+                <label asp-for="Email" class="col-form-label"></label>
+                <input class="form-control" type="email" asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-8 col-sm-12 col-lg-4 form-group text-center mx-auto">
+                <label asp-for="Password" class="col-form-label"></label>
+                <input class="form-control" type="password" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-md-8 col-sm-12 col-lg-4 form-group text-center mx-auto">
+                <label asp-for="RememberMe" class="col-form-label"></label>
+                <input class="form-control" type="checkbox" asp-for="RememberMe" />
+                <span asp-validation-for="RememberMe" class="text-danger"></span>
+            </div>
+            <div class="col-md-8 col-sm-12 col-lg-4 form-group my-5 mx-auto">
+                <input class="btn btn-success form-control" type="submit" value="Войти"/>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

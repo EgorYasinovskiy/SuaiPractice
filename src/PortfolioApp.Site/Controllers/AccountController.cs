@@ -52,8 +52,24 @@ namespace PortfolioApp.Site.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult SignIn(SignInViewModel model)
+		public async Task<IActionResult> SignIn(SignInViewModel model)
 		{
+			if(ModelState.IsValid)
+			{
+				var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+				if(result.Succeeded)
+				{
+					if(!string.IsNullOrEmpty(model.ReturnURL) && Url.IsLocalUrl(model.ReturnURL))
+					{
+						return Redirect(model.ReturnURL);
+					}
+					else
+					{
+						return RedirectToAction("Index", "Home");
+					}
+				}
+				ModelState.AddModelError("Ошибка авторизации", "Неверный логин или пароль");
+			}
 			return View(model);
 		}
 	}
