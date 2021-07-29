@@ -8,7 +8,7 @@ namespace PortfolioApp.Site.Models
 	{
 		[Key]
 		public Guid Id { get; set; }
-		public virtual List<Picture> Pictures { get; set; }
+		public virtual ICollection<Picture> Pictures { get; set; }
 		public string Title { get; set; }
 		public string Text { get; set; }
 		public DateTime Created { get; set; }
