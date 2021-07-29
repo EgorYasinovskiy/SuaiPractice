@@ -32,6 +32,7 @@ namespace PortfolioApp.Site
 				options.Password.RequiredUniqueChars = 0;
 			}).AddEntityFrameworkStores<ApplicationDataContext>().AddDefaultTokenProviders();
 			services.AddDbContext<ApplicationDataContext>();
+			services.AddScoped<FileUploadService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
