@@ -72,5 +72,11 @@ namespace PortfolioApp.Site.Controllers
 			}
 			return View(model);
 		}
+		[HttpPost]
+		public async Task<IActionResult> LogOut()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction("Index", "Home");
+		}
 	}
 }
