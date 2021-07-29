@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - PortfolioApp.Site</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="bg-dark text-light">
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" method="post" id="loguotform" asp-action="Logout" asp-controller="Account">
+					<ul class="navbar-nav">
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-action="SignUp" asp-controller="Account">SignUp</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-action="SignIn" asp-controller="Account">SignIn</a>
+						</li>
+					}
+					else
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-action="My" asp-controller="Account">username</a>
+						</li>
+						<li class="nav-item">
+
+							<a class="nav-link" href="#" onclick="this.parentElement.parentElement.parentElement.submit()">LogOut</a>
+						</li>
+					}
+					</ul>
+				</form>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2021 - PortfolioApp.Site - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
