@@ -1,0 +1,74 @@
+﻿@model EditNewsItemViewModel
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col mx-auto">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto text-center">
+                <h2>Добавление новости</h2>
+            </div>
+            <div class="col">
+                <form class="" enctype="multipart/form-data" asp-action="Edit" asp-controller="News" method="post">
+                    <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
+                        <label asp-for="Title"></label>
+                        <input class="form-control" asp-for="Title" />
+                        <span asp-validation-for="Title"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
+                        <label asp-for="Text"></label>
+                        <textarea class="form-control" asp-for="Text"></textarea>
+                        <span asp-validation-for="Title"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
+                        <label class="btn btn-primary btn-fake form-control" asp-for="Pictures">
+                            <div class="col">
+                                <span class="">
+                                    Загрузить изображения
+                                </span>
+                                <span class="text-light text-right float-right" Id="PicsCounter">
+                                    
+                                </span>
+                            </div>
+                        </label>
+                        <input class="form-control" hidden="true" asp-for="Pictures" multiple accept="image/*" onchange="filesCounter(this)" />
+                        <span asp-validation-for="Pictures"></span>
+                        <div class="col">
+                            <span class="text-danger my-2" id="PicsChanged"></span>
+                            <div id="clearBtn" style="display:none"class="btn btn-primary btn-fake" onclick="clearInput()">
+                                Отменить
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
+                        <input class="form-control btn btn-success" type="submit" value="Сохранить изменения" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function clearInput()
+    {
+        var elem = document.getElementById("Pictures");
+        elem.value = "";
+        filesCounter(elem);
+        
+    }
+    function filesCounter(sender){
+        var l = sender.files.length;
+        
+        if(l!=0){
+            document.getElementById("PicsCounter").innerText = l;
+            document.getElementById("PicsChanged").innerText = "Изображения новости будут заменены на загруженные вами изображения";
+            document.getElementById("clearBtn").style.display = "inline-block";
+        }
+        else{
+            document.getElementById("PicsCounter").innerText = "";
+            document.getElementById("PicsChanged").innerText = "";
+            document.getElementById("clearBtn").style.display = "none";
+
+            
+        }
+    }
+</script>

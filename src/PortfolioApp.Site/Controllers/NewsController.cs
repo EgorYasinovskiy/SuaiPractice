@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -46,6 +47,38 @@ namespace PortfolioApp.Site.Controllers
 				await _context.News.AddAsync(newsItem);
 				await _context.SaveChangesAsync();
 				return RedirectToAction("Index", "Home");
+			}
+			return View(model);
+		}
+		
+		[HttpGet] 
+		public async Task<IActionResult> Edit(Guid id)
+		{
+			var newsItem = await _context.News.FindAsync(id);
+			var model = new EditNewsItemViewModel()
+			{
+				Id = newsItem.Id,
+				Text = newsItem.Text,
+				Title = newsItem.Title
+			};
+			return View(model);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Edit(EditNewsItemViewModel model)
+		{
+			if(ModelState.IsValid)
+			{
+				var newsItem = await _context.News.FindAsync(model.Id);
+				IEnumerable<Picture> pics;
+				if(model.Pictures!=null && model.Pictures.Count < 0)
+				{
+					pics = await _fileService.UploadFilesAsync(model.Pictures);
+					newsItem.Pictures = pics.ToList();
+				}
+				newsItem.Title = model.Title;
+				newsItem.Text = model.Text;
+				await _context.SaveChangesAsync();
+				return RedirectToAction("List");
 			}
 			return View(model);
 		}
