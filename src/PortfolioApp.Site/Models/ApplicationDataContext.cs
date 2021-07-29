@@ -10,7 +10,10 @@ namespace PortfolioApp.Site.Models
 		public DbSet<Picture> Pictures { get; set; }
 		public DbSet<NewsItem> News { get; set; }
 
-		public ApplicationDataContext() : base() { }
+		public ApplicationDataContext() : base() 
+		{
+			Database.EnsureCreated();
+		}
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
