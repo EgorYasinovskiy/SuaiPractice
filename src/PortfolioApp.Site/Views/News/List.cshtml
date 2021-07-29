@@ -25,9 +25,9 @@
                                     </form> 
                                 </div>
                                 <div class="col-12 my-1">
-                                     <form asp-action="Edit" asp-controller="News" asp-route-id="@item.Id">
-                                        <input type="submit" class="btn btn-light form-control" value="Редактировать"/>
-                                    </form> 
+                                    <a asp-action="Edit" asp-controller="News" asp-route-id="@item.Id" class="btn btn-light form-control">
+                                        Редактировать
+                                    </a>
                                 </div>
                             </div>
                         </div>
