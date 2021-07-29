@@ -14,11 +14,12 @@ namespace PortfolioApp.Site.Models
 		private readonly ApplicationDataContext _context;
 		private readonly IWebHostEnvironment _appEnv;
 		private readonly string uploadPath;
+		private const string UploadDir = "UploadFiles/";
 		public FileUploadService(ApplicationDataContext context, IWebHostEnvironment appEnv)
 		{
 			_context = context;
 			_appEnv = appEnv;
-			uploadPath = Path.Combine(_appEnv.WebRootPath, "UploadsFiles\\");
+			uploadPath = Path.Combine(_appEnv.WebRootPath, UploadDir);
 
 			if (!Directory.Exists(uploadPath))
 			{
@@ -31,14 +32,14 @@ namespace PortfolioApp.Site.Models
 			foreach(var file in files)
 			{
 				Picture pic;
-				string fileName = Path.GetRandomFileName();
-				fileName= Path.ChangeExtension(fileName, Path.GetExtension(file.FileName));
-				string filePath = Path.Combine(_appEnv.WebRootPath, "UploadsFiles", fileName);
+				var id = Guid.NewGuid();
+				var fileName= Path.ChangeExtension(id.ToString(), Path.GetExtension(file.FileName));
+				string filePath = Path.Combine(uploadPath, fileName);
 				using (FileStream fs = new FileStream(filePath,FileMode.Create))
 				{
 					await file.CopyToAsync(fs);
 				}
-				pic = new Picture() { Id = Guid.NewGuid(), PicturePath = filePath };
+				pic = new Picture() { Id = id, PicturePath = Path.Combine("/",UploadDir,fileName) };
 				await _context.Pictures.AddAsync(pic);
 				pics.Add(pic);
 			}
