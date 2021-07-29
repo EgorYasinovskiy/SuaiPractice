@@ -19,7 +19,16 @@
                         <span asp-validation-for="Title"></span>
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
-                        <label class="btn btn-primary btn-fake form-control" asp-for="Pictures">Загрузить изображения</label>
+                        <label class="btn btn-primary btn-fake form-control" asp-for="Pictures">
+                            <div class="col">
+                                <span class="">
+                                    Загрузить изображения
+                                </span>
+                                <span class="text-light text-right float-right" Id="PicsCounter">
+                                    
+                                </span>
+                            </div>
+                        </label>
                         <input class="form-control" hidden="true" asp-for="Pictures" multiple accept="image/*" />
                         <span asp-validation-for="Pictures"></span>
                     </div>
@@ -31,3 +40,21 @@
         </div>
     </div>
 </div>
+<script>
+    function clearInput()
+    {
+        var elem = document.getElementById("Pictures");
+        elem.value = "";
+        filesCounter(elem);
+    }
+    function filesCounter(sender){
+        var l = sender.files.length;
+        
+        if(l!=0){
+            document.getElementById("PicsCounter").innerText = l;
+        }
+        else{
+            document.getElementById("PicsCounter").innerText = "";
+        }
+    }
+</script>
