@@ -15,7 +15,7 @@ namespace PortfolioApp.Site.Models.ViewModels
 		[Display(Name = "Пароль")]
 		public string Password { get; set; }
 		
-		[Display(Name = "Запомнить данные")]
+		[Display(Name = "Не выходить")]
 		public bool RememberMe { get; set; }
 
 		public string ReturnURL { get; set; }
