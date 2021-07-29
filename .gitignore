@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 *.db
 /src/PortfolioApp.Site/wwwroot/UploadsFiles
+/src/PortfolioApp.Site/wwwroot/UploadFiles

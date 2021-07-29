@@ -1,0 +1,40 @@
+﻿@model List<NewsItem>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col mx-auto">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto text-center">
+                <h2>Список новостей</h2>
+            </div>
+            <div class="col">
+                @foreach(var item in Model)
+                {
+                    <div class="row justify-content-center my-5 border-top border-light py-5">
+                        <div class="col-12 col-lg-4">
+                            <img src="@(item.Pictures?.FirstOrDefault()?.PicturePath ?? "#")" class="img-fluid" alt="@($"Изображение {item.Title}")"/>
+                        </div>
+                        <div class="col-12 col-lg-4 text-center text-lg-left">
+                            <h3>
+                                @item.Title
+                            </h3>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="row">
+                                <div class="col-12 my-1">
+                                    <form asp-action="Delete" asp-controller="News" asp-route-id="@item.Id">
+                                        <input type="submit" class="form-control btn btn-danger" value="Удалить"/>
+                                    </form> 
+                                </div>
+                                <div class="col-12 my-1">
+                                     <form asp-action="Edit" asp-controller="News" asp-route-id="@item.Id">
+                                        <input type="submit" class="btn btn-light form-control" value="Редактировать"/>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

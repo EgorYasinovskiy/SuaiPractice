@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using PortfolioApp.Site.Models;
 using PortfolioApp.Site.Models.ViewModels;
@@ -60,6 +61,11 @@ namespace PortfolioApp.Site.Controllers
 			_context.News.Remove(newsItem);
 			await _context.SaveChangesAsync();
 			return RedirectToAction("List", "News");
+		}
+		[HttpGet]
+		public IActionResult List()
+		{
+			return View(_context.News.Include(n=>n.Pictures).ToList());
 		}
 	}
 }
