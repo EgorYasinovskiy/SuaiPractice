@@ -26,7 +26,7 @@
 				</ul>
 				<form class="form-inline my-2 my-lg-0" method="post" id="loguotform" asp-action="Logout" asp-controller="Account">
 					<ul class="navbar-nav">
-					@if (User.Identity.IsAuthenticated)
+					@if (!User.Identity.IsAuthenticated)
 					{
 						<li class="nav-item">
 							<a class="nav-link" asp-action="SignUp" asp-controller="Account">SignUp</a>
@@ -38,7 +38,7 @@
 					else
 					{
 						<li class="nav-item">
-							<a class="nav-link" asp-action="My" asp-controller="Account">username</a>
+							<a class="nav-link" asp-action="My" asp-controller="Account">@User.Identity.Name</a>
 						</li>
 						<li class="nav-item">
 
