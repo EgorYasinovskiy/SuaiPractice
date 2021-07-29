@@ -1,6 +1,6 @@
 ﻿@model AddNewsItemViewModel
 
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col mx-auto">
             <div class="col-sm-12 col-md-8 col-lg-6 mx-auto text-center">
@@ -19,12 +19,12 @@
                         <span asp-validation-for="Title"></span>
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
-                        <label asp-for="Pictures"></label>
-                        <input class="form-control" asp-for="Pictures" multiple accept="image/*" />
+                        <label class="btn btn-primary btn-fake form-control" asp-for="Pictures">Загрузить изображения</label>
+                        <input class="form-control" hidden="true" asp-for="Pictures" multiple accept="image/*" />
                         <span asp-validation-for="Pictures"></span>
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-6 form-group text-center mx-auto">
-                        <input class="form-control btn btn-success" type="submit"/>
+                        <input class="form-control btn btn-success" type="submit" value="Опубликовать"/>
                     </div>
                 </form>
             </div>
