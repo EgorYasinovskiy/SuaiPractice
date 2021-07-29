@@ -22,8 +22,10 @@ namespace PortfolioApp.Site.Models
 			builder.Entity<ApplicationUser>().HasMany(u => u.Posts).WithOne(p => p.Author).HasForeignKey(p => p.AuthorID);
 			builder.Entity<Comment>().HasOne(c => c.Post).WithMany(p => p.Comments).HasForeignKey(c => c.PostId);
 			builder.Entity<Comment>().HasOne(c => c.User).WithMany(u => u.Comments).HasForeignKey(c => c.UserID);
+			builder.Entity<NewsItem>().HasMany(n => n.Pictures).WithMany(p => p.News);
 			builder.Entity<Post>().HasOne(p => p.Author).WithMany(u => u.Posts).HasForeignKey(p => p.AuthorID);
 			builder.Entity<Post>().HasMany(p => p.Comments).WithOne(c => c.Post).HasForeignKey(c => c.PostId);
+			builder.Entity<Post>().HasMany(p => p.Pictures).WithMany(p => p.Posts);
 			builder.Entity<Post>().HasMany(p => p.LikedUsers).WithMany(u => u.Liked);
 			base.OnModelCreating(builder);
 		}
