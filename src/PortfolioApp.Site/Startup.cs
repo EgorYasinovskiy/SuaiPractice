@@ -25,6 +25,11 @@ namespace PortfolioApp.Site
 			services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 			{
 				options.User.RequireUniqueEmail = true;
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = false;
+				options.Password.RequiredUniqueChars = 0;
 			}).AddEntityFrameworkStores<ApplicationDataContext>().AddDefaultTokenProviders();
 			services.AddDbContext<ApplicationDataContext>();
 		}
@@ -48,6 +53,7 @@ namespace PortfolioApp.Site
 			app.UseRouting();
 
 			app.UseAuthorization();
+			app.UseAuthentication();
 
 			app.UseEndpoints(endpoints =>
 			{
